@@ -1,0 +1,39 @@
+﻿@model Fitness.Models.ListZarplataViewModel
+
+@{
+    ViewBag.Title = "Просмотр начислений";
+}
+
+<h2>Просмотр начислений</h2>
+
+<table class="table">
+    
+    <tr>
+        <th>
+            @Html.Label("ФИО")
+        </th>
+        <th>
+            @Html.Label("Должность")
+        </th>
+        <th>
+            @Html.Label("Начисления, руб")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Zarplats)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.FIO_sotrudnik)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Dolgnost)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => item.Summa)
+            </td>
+        </tr>
+    }
+  
+</table>

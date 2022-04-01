@@ -1,0 +1,19 @@
+﻿@model Fitness.Models.CalendarViewModel
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-inline">
+        <hr />
+        @Html.EditorFor(model => model.Period.Data_nachala, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.Period.Data_okonchania, new { htmlAttributes = new { @class = "form-control" } })
+
+        <input type="submit" value="Отобразить" class="btn btn-default" />
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

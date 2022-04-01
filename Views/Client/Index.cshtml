@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Fitness.Models.ClientViewAbonementModel>
+
+@{
+    ViewBag.Title = "Мои абонементы";
+}
+
+<h2>Просмотр абонементов</h2>
+
+<p>
+    <input type="button" value="Активные" onclick="location.href='@Url.Action("DetailsActiveAbonement", "Client")'" class="btn btn-default" /> 
+    @Html.ActionLink("Заказать новый", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nazvanie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kolichestvo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cena)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sostojanie)
+        </th>
+        <th></th>
+    </tr>
+
+   @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nazvanie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kolichestvo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cena)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sostojanie)
+        </td>
+        @if (item.Sostojanie == "заказаный")
+        {
+            <td>
+                @Html.ActionLink("Удалить", "Delete", new { id = item.ID_abonement })
+            </td>
+        }
+        else {<td> </td>}
+    </tr>
+   }
+
+</table>

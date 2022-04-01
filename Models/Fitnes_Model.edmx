@@ -1,0 +1,1037 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище FitnessModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Abonement">
+          <Key>
+            <PropertyRef Name="ID_abonement" />
+          </Key>
+          <Property Name="ID_abonement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_usluga" Type="int" Nullable="false" />
+          <Property Name="ID_skidka" Type="int" />
+          <Property Name="ID_klient" Type="int" Nullable="false" />
+          <Property Name="ID_sotrudnik" Type="int" />
+          <Property Name="Data_nachala" Type="datetime" />
+          <Property Name="Data_okonchania" Type="datetime" />
+          <Property Name="Kolichestvo" Type="int" />
+          <Property Name="Ostatok" Type="int" />
+          <Property Name="Stoimost" Type="float" />
+          <Property Name="Sostojanie" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Adress">
+          <Key>
+            <PropertyRef Name="ID_adress" />
+          </Key>
+          <Property Name="ID_adress" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nomer_doma" Type="int" Nullable="false" />
+          <Property Name="Nomer_kvartiru" Type="int" />
+          <Property Name="ID_ulica" Type="int" />
+        </EntityType>
+        <EntityType Name="Dolgnost">
+          <Key>
+            <PropertyRef Name="ID_dolgnost" />
+          </Key>
+          <Property Name="ID_dolgnost" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazvanie_dolgnosti" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Klient">
+          <Key>
+            <PropertyRef Name="ID_klient" />
+          </Key>
+          <Property Name="ID_klient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO_klient" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telephon" Type="nvarchar" MaxLength="20" />
+          <Property Name="ID_adress" Type="int" />
+          <Property Name="ID_Login" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Pomeshenie">
+          <Key>
+            <PropertyRef Name="ID_pomeshenia" />
+          </Key>
+          <Property Name="ID_pomeshenia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazvanie_pomeshenia" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Poseshenie">
+          <Key>
+            <PropertyRef Name="ID_poseshenia" />
+          </Key>
+          <Property Name="ID_poseshenia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_abonement" Type="int" Nullable="false" />
+          <Property Name="ID_zanjatia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Raspisanie_zanjatij">
+          <Key>
+            <PropertyRef Name="ID_zanjatia" />
+          </Key>
+          <Property Name="ID_zanjatia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_usluga" Type="int" Nullable="false" />
+          <Property Name="Data" Type="datetime" Nullable="false" />
+          <Property Name="ID_sotrudnik" Type="int" />
+          <Property Name="ID_pomeshenia" Type="int" />
+        </EntityType>
+        <EntityType Name="Skidka">
+          <Key>
+            <PropertyRef Name="ID_skidka" />
+          </Key>
+          <Property Name="ID_skidka" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_usluga" Type="int" />
+          <Property Name="Procent_value" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="Kolichestvo" Type="int" />
+        </EntityType>
+        <EntityType Name="Sotrudnik">
+          <Key>
+            <PropertyRef Name="ID_sotrudnik" />
+          </Key>
+          <Property Name="ID_sotrudnik" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO_sotrudnik" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telephon" Type="nvarchar" MaxLength="20" />
+          <Property Name="Pasport" Type="nvarchar" MaxLength="100" />
+          <Property Name="ID_adress" Type="int" />
+          <Property Name="ID_dolgnost" Type="int" />
+          <Property Name="ID_Login" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Ulica">
+          <Key>
+            <PropertyRef Name="ID_ulica" />
+          </Key>
+          <Property Name="ID_ulica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazvanie_ulicu" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Usluga">
+          <Key>
+            <PropertyRef Name="ID_usluga" />
+          </Key>
+          <Property Name="ID_usluga" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazvanie" Type="nvarchar" MaxLength="20" />
+          <Property Name="Cena_za_poseshenie" Type="float" />
+          <Property Name="Image" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Zarplata_administratoram">
+          <Key>
+            <PropertyRef Name="ID_nachislenija" />
+          </Key>
+          <Property Name="ID_nachislenija" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_abonement" Type="int" />
+          <Property Name="Summa" Type="float" />
+        </EntityType>
+        <EntityType Name="Zarplata_instruktoram">
+          <Key>
+            <PropertyRef Name="ID_nachislenia" />
+          </Key>
+          <Property Name="ID_nachislenia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_usluga" Type="int" Nullable="false" />
+          <Property Name="ID_poseshenia" Type="int" Nullable="false" />
+          <Property Name="Summa" Type="float" />
+        </EntityType>
+        <Association Name="FK_Abonement_Klient">
+          <End Role="Klient" Type="Self.Klient" Multiplicity="1" />
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klient">
+              <PropertyRef Name="ID_klient" />
+            </Principal>
+            <Dependent Role="Abonement">
+              <PropertyRef Name="ID_klient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Abonement_Skidka">
+          <End Role="Skidka" Type="Self.Skidka" Multiplicity="0..1" />
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skidka">
+              <PropertyRef Name="ID_skidka" />
+            </Principal>
+            <Dependent Role="Abonement">
+              <PropertyRef Name="ID_skidka" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Abonement_Sortudnik">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="ID_sotrudnik" />
+            </Principal>
+            <Dependent Role="Abonement">
+              <PropertyRef Name="ID_sotrudnik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Abonement_Usluga">
+          <End Role="Usluga" Type="Self.Usluga" Multiplicity="1" />
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usluga">
+              <PropertyRef Name="ID_usluga" />
+            </Principal>
+            <Dependent Role="Abonement">
+              <PropertyRef Name="ID_usluga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adress_Ulica">
+          <End Role="Ulica" Type="Self.Ulica" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Adress" Type="Self.Adress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ulica">
+              <PropertyRef Name="ID_ulica" />
+            </Principal>
+            <Dependent Role="Adress">
+              <PropertyRef Name="ID_ulica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Klient_Adress">
+          <End Role="Adress" Type="Self.Adress" Multiplicity="0..1" />
+          <End Role="Klient" Type="Self.Klient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adress">
+              <PropertyRef Name="ID_adress" />
+            </Principal>
+            <Dependent Role="Klient">
+              <PropertyRef Name="ID_adress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Poseshenie_Abonement">
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="1" />
+          <End Role="Poseshenie" Type="Self.Poseshenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abonement">
+              <PropertyRef Name="ID_abonement" />
+            </Principal>
+            <Dependent Role="Poseshenie">
+              <PropertyRef Name="ID_abonement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Poseshenie_Raspisanie_zanjatij">
+          <End Role="Raspisanie_zanjatij" Type="Self.Raspisanie_zanjatij" Multiplicity="1" />
+          <End Role="Poseshenie" Type="Self.Poseshenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Raspisanie_zanjatij">
+              <PropertyRef Name="ID_zanjatia" />
+            </Principal>
+            <Dependent Role="Poseshenie">
+              <PropertyRef Name="ID_zanjatia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Raspisanie_zanjatij_Pomeshenie">
+          <End Role="Pomeshenie" Type="Self.Pomeshenie" Multiplicity="0..1" />
+          <End Role="Raspisanie_zanjatij" Type="Self.Raspisanie_zanjatij" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pomeshenie">
+              <PropertyRef Name="ID_pomeshenia" />
+            </Principal>
+            <Dependent Role="Raspisanie_zanjatij">
+              <PropertyRef Name="ID_pomeshenia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Raspisanie_zanjatij_Sotrudnik">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
+          <End Role="Raspisanie_zanjatij" Type="Self.Raspisanie_zanjatij" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="ID_sotrudnik" />
+            </Principal>
+            <Dependent Role="Raspisanie_zanjatij">
+              <PropertyRef Name="ID_sotrudnik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Raspisanie_zanjatij_Usluga">
+          <End Role="Usluga" Type="Self.Usluga" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Raspisanie_zanjatij" Type="Self.Raspisanie_zanjatij" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usluga">
+              <PropertyRef Name="ID_usluga" />
+            </Principal>
+            <Dependent Role="Raspisanie_zanjatij">
+              <PropertyRef Name="ID_usluga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Skidka_Usluga">
+          <End Role="Usluga" Type="Self.Usluga" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Skidka" Type="Self.Skidka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usluga">
+              <PropertyRef Name="ID_usluga" />
+            </Principal>
+            <Dependent Role="Skidka">
+              <PropertyRef Name="ID_usluga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrudnik_Adress">
+          <End Role="Adress" Type="Self.Adress" Multiplicity="0..1" />
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adress">
+              <PropertyRef Name="ID_adress" />
+            </Principal>
+            <Dependent Role="Sotrudnik">
+              <PropertyRef Name="ID_adress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrudnik_Dolgnost">
+          <End Role="Dolgnost" Type="Self.Dolgnost" Multiplicity="0..1" />
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dolgnost">
+              <PropertyRef Name="ID_dolgnost" />
+            </Principal>
+            <Dependent Role="Sotrudnik">
+              <PropertyRef Name="ID_dolgnost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zarplata_administratoram_Abonement">
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="0..1" />
+          <End Role="Zarplata_administratoram" Type="Self.Zarplata_administratoram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abonement">
+              <PropertyRef Name="ID_abonement" />
+            </Principal>
+            <Dependent Role="Zarplata_administratoram">
+              <PropertyRef Name="ID_abonement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zarplata_instructoram_Poseshenie">
+          <End Role="Poseshenie" Type="Self.Poseshenie" Multiplicity="1" />
+          <End Role="Zarplata_instruktoram" Type="Self.Zarplata_instruktoram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poseshenie">
+              <PropertyRef Name="ID_poseshenia" />
+            </Principal>
+            <Dependent Role="Zarplata_instruktoram">
+              <PropertyRef Name="ID_poseshenia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zarplata_instructoram_Usluga">
+          <End Role="Usluga" Type="Self.Usluga" Multiplicity="1" />
+          <End Role="Zarplata_instruktoram" Type="Self.Zarplata_instruktoram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usluga">
+              <PropertyRef Name="ID_usluga" />
+            </Principal>
+            <Dependent Role="Zarplata_instruktoram">
+              <PropertyRef Name="ID_usluga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище FitnessModelContainer">
+          <EntitySet Name="Abonement" EntityType="Self.Abonement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Adress" EntityType="Self.Adress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dolgnost" EntityType="Self.Dolgnost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Klient" EntityType="Self.Klient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pomeshenie" EntityType="Self.Pomeshenie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Poseshenie" EntityType="Self.Poseshenie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Raspisanie_zanjatij" EntityType="Self.Raspisanie_zanjatij" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skidka" EntityType="Self.Skidka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ulica" EntityType="Self.Ulica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usluga" EntityType="Self.Usluga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zarplata_administratoram" EntityType="Self.Zarplata_administratoram" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zarplata_instruktoram" EntityType="Self.Zarplata_instruktoram" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Abonement_Klient" Association="Self.FK_Abonement_Klient">
+            <End Role="Klient" EntitySet="Klient" />
+            <End Role="Abonement" EntitySet="Abonement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Abonement_Skidka" Association="Self.FK_Abonement_Skidka">
+            <End Role="Skidka" EntitySet="Skidka" />
+            <End Role="Abonement" EntitySet="Abonement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Abonement_Sortudnik" Association="Self.FK_Abonement_Sortudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Abonement" EntitySet="Abonement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Abonement_Usluga" Association="Self.FK_Abonement_Usluga">
+            <End Role="Usluga" EntitySet="Usluga" />
+            <End Role="Abonement" EntitySet="Abonement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adress_Ulica" Association="Self.FK_Adress_Ulica">
+            <End Role="Ulica" EntitySet="Ulica" />
+            <End Role="Adress" EntitySet="Adress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Klient_Adress" Association="Self.FK_Klient_Adress">
+            <End Role="Adress" EntitySet="Adress" />
+            <End Role="Klient" EntitySet="Klient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Poseshenie_Abonement" Association="Self.FK_Poseshenie_Abonement">
+            <End Role="Abonement" EntitySet="Abonement" />
+            <End Role="Poseshenie" EntitySet="Poseshenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Poseshenie_Raspisanie_zanjatij" Association="Self.FK_Poseshenie_Raspisanie_zanjatij">
+            <End Role="Raspisanie_zanjatij" EntitySet="Raspisanie_zanjatij" />
+            <End Role="Poseshenie" EntitySet="Poseshenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Raspisanie_zanjatij_Pomeshenie" Association="Self.FK_Raspisanie_zanjatij_Pomeshenie">
+            <End Role="Pomeshenie" EntitySet="Pomeshenie" />
+            <End Role="Raspisanie_zanjatij" EntitySet="Raspisanie_zanjatij" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Raspisanie_zanjatij_Sotrudnik" Association="Self.FK_Raspisanie_zanjatij_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Raspisanie_zanjatij" EntitySet="Raspisanie_zanjatij" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Raspisanie_zanjatij_Usluga" Association="Self.FK_Raspisanie_zanjatij_Usluga">
+            <End Role="Usluga" EntitySet="Usluga" />
+            <End Role="Raspisanie_zanjatij" EntitySet="Raspisanie_zanjatij" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skidka_Usluga" Association="Self.FK_Skidka_Usluga">
+            <End Role="Usluga" EntitySet="Usluga" />
+            <End Role="Skidka" EntitySet="Skidka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrudnik_Adress" Association="Self.FK_Sotrudnik_Adress">
+            <End Role="Adress" EntitySet="Adress" />
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrudnik_Dolgnost" Association="Self.FK_Sotrudnik_Dolgnost">
+            <End Role="Dolgnost" EntitySet="Dolgnost" />
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zarplata_administratoram_Abonement" Association="Self.FK_Zarplata_administratoram_Abonement">
+            <End Role="Abonement" EntitySet="Abonement" />
+            <End Role="Zarplata_administratoram" EntitySet="Zarplata_administratoram" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zarplata_instructoram_Poseshenie" Association="Self.FK_Zarplata_instructoram_Poseshenie">
+            <End Role="Poseshenie" EntitySet="Poseshenie" />
+            <End Role="Zarplata_instruktoram" EntitySet="Zarplata_instruktoram" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zarplata_instructoram_Usluga" Association="Self.FK_Zarplata_instructoram_Usluga">
+            <End Role="Usluga" EntitySet="Usluga" />
+            <End Role="Zarplata_instruktoram" EntitySet="Zarplata_instruktoram" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FitnessModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Abonement">
+          <Key>
+            <PropertyRef Name="ID_abonement" />
+          </Key>
+          <Property Name="ID_abonement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_usluga" Type="Int32" Nullable="false" />
+          <Property Name="ID_skidka" Type="Int32" />
+          <Property Name="ID_klient" Type="Int32" Nullable="false" />
+          <Property Name="ID_sotrudnik" Type="Int32" />
+          <Property Name="Data_nachala" Type="DateTime" Precision="3" />
+          <Property Name="Data_okonchania" Type="DateTime" Precision="3" />
+          <Property Name="Kolichestvo" Type="Int32" />
+          <Property Name="Sostojanie" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Klient" Relationship="Self.FK_Abonement_Klient" FromRole="Abonement" ToRole="Klient" />
+          <NavigationProperty Name="Skidka" Relationship="Self.FK_Abonement_Skidka" FromRole="Abonement" ToRole="Skidka" />
+          <NavigationProperty Name="Sotrudnik" Relationship="Self.FK_Abonement_Sortudnik" FromRole="Abonement" ToRole="Sotrudnik" />
+          <NavigationProperty Name="Usluga" Relationship="Self.FK_Abonement_Usluga" FromRole="Abonement" ToRole="Usluga" />
+          <NavigationProperty Name="Poseshenies" Relationship="Self.FK_Poseshenie_Abonement" FromRole="Abonement" ToRole="Poseshenie" />
+          <NavigationProperty Name="Zarplata_administratoram" Relationship="Self.FK_Zarplata_administratoram_Abonement" FromRole="Abonement" ToRole="Zarplata_administratoram" />
+          <Property Name="Ostatok" Type="Int32" />
+          <Property Name="Stoimost" Type="Double" />
+        </EntityType>
+        <EntityType Name="Adress">
+          <Key>
+            <PropertyRef Name="ID_adress" />
+          </Key>
+          <Property Name="ID_adress" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nomer_doma" Type="Int32" Nullable="false" />
+          <Property Name="Nomer_kvartiru" Type="Int32" />
+          <Property Name="ID_ulica" Type="Int32" />
+          <NavigationProperty Name="Ulica" Relationship="Self.FK_Adress_Ulica" FromRole="Adress" ToRole="Ulica" />
+          <NavigationProperty Name="Klients" Relationship="Self.FK_Klient_Adress" FromRole="Adress" ToRole="Klient" />
+          <NavigationProperty Name="Sotrudniks" Relationship="Self.FK_Sotrudnik_Adress" FromRole="Adress" ToRole="Sotrudnik" />
+        </EntityType>
+        <EntityType Name="Dolgnost">
+          <Key>
+            <PropertyRef Name="ID_dolgnost" />
+          </Key>
+          <Property Name="ID_dolgnost" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazvanie_dolgnosti" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sotrudniks" Relationship="Self.FK_Sotrudnik_Dolgnost" FromRole="Dolgnost" ToRole="Sotrudnik" />
+        </EntityType>
+        <EntityType Name="Klient">
+          <Key>
+            <PropertyRef Name="ID_klient" />
+          </Key>
+          <Property Name="ID_klient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO_klient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telephon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ID_adress" Type="Int32" />
+          <Property Name="ID_Login" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="true" />
+          <NavigationProperty Name="Abonements" Relationship="Self.FK_Abonement_Klient" FromRole="Klient" ToRole="Abonement" />
+          <NavigationProperty Name="Adress" Relationship="Self.FK_Klient_Adress" FromRole="Klient" ToRole="Adress" />
+        </EntityType>
+        <EntityType Name="Pomeshenie">
+          <Key>
+            <PropertyRef Name="ID_pomeshenia" />
+          </Key>
+          <Property Name="ID_pomeshenia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazvanie_pomeshenia" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Raspisanie_zanjatij" Relationship="Self.FK_Raspisanie_zanjatij_Pomeshenie" FromRole="Pomeshenie" ToRole="Raspisanie_zanjatij" />
+        </EntityType>
+        <EntityType Name="Poseshenie">
+          <Key>
+            <PropertyRef Name="ID_poseshenia" />
+          </Key>
+          <Property Name="ID_poseshenia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_abonement" Type="Int32" Nullable="false" />
+          <Property Name="ID_zanjatia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Abonement" Relationship="Self.FK_Poseshenie_Abonement" FromRole="Poseshenie" ToRole="Abonement" />
+          <NavigationProperty Name="Raspisanie_zanjatij" Relationship="Self.FK_Poseshenie_Raspisanie_zanjatij" FromRole="Poseshenie" ToRole="Raspisanie_zanjatij" />
+          <NavigationProperty Name="Zarplata_instruktoram" Relationship="Self.FK_Zarplata_instructoram_Poseshenie" FromRole="Poseshenie" ToRole="Zarplata_instruktoram" />
+        </EntityType>
+        <EntityType Name="Raspisanie_zanjatij">
+          <Key>
+            <PropertyRef Name="ID_zanjatia" />
+          </Key>
+          <Property Name="ID_zanjatia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_usluga" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_sotrudnik" Type="Int32" />
+          <Property Name="ID_pomeshenia" Type="Int32" />
+          <NavigationProperty Name="Pomeshenie" Relationship="Self.FK_Raspisanie_zanjatij_Pomeshenie" FromRole="Raspisanie_zanjatij" ToRole="Pomeshenie" />
+          <NavigationProperty Name="Poseshenies" Relationship="Self.FK_Poseshenie_Raspisanie_zanjatij" FromRole="Raspisanie_zanjatij" ToRole="Poseshenie" />
+          <NavigationProperty Name="Sotrudnik" Relationship="Self.FK_Raspisanie_zanjatij_Sotrudnik" FromRole="Raspisanie_zanjatij" ToRole="Sotrudnik" />
+          <NavigationProperty Name="Usluga" Relationship="Self.FK_Raspisanie_zanjatij_Usluga" FromRole="Raspisanie_zanjatij" ToRole="Usluga" />
+        </EntityType>
+        <EntityType Name="Skidka">
+          <Key>
+            <PropertyRef Name="ID_skidka" />
+          </Key>
+          <Property Name="ID_skidka" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_usluga" Type="Int32" />
+          <Property Name="Procent_value" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="Kolichestvo" Type="Int32" />
+          <NavigationProperty Name="Abonements" Relationship="Self.FK_Abonement_Skidka" FromRole="Skidka" ToRole="Abonement" />
+          <NavigationProperty Name="Usluga" Relationship="Self.FK_Skidka_Usluga" FromRole="Skidka" ToRole="Usluga" />
+        </EntityType>
+        <EntityType Name="Sotrudnik">
+          <Key>
+            <PropertyRef Name="ID_sotrudnik" />
+          </Key>
+          <Property Name="ID_sotrudnik" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO_sotrudnik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telephon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Pasport" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ID_adress" Type="Int32" />
+          <Property Name="ID_dolgnost" Type="Int32" />
+          <Property Name="ID_Login" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Abonements" Relationship="Self.FK_Abonement_Sortudnik" FromRole="Sotrudnik" ToRole="Abonement" />
+          <NavigationProperty Name="Adress" Relationship="Self.FK_Sotrudnik_Adress" FromRole="Sotrudnik" ToRole="Adress" />
+          <NavigationProperty Name="Dolgnost" Relationship="Self.FK_Sotrudnik_Dolgnost" FromRole="Sotrudnik" ToRole="Dolgnost" />
+          <NavigationProperty Name="Raspisanie_zanjatij" Relationship="Self.FK_Raspisanie_zanjatij_Sotrudnik" FromRole="Sotrudnik" ToRole="Raspisanie_zanjatij" />
+        </EntityType>
+        <EntityType Name="Ulica">
+          <Key>
+            <PropertyRef Name="ID_ulica" />
+          </Key>
+          <Property Name="ID_ulica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazvanie_ulicu" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Adresses" Relationship="Self.FK_Adress_Ulica" FromRole="Ulica" ToRole="Adress" />
+        </EntityType>
+        <EntityType Name="Usluga">
+          <Key>
+            <PropertyRef Name="ID_usluga" />
+          </Key>
+          <Property Name="ID_usluga" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazvanie" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Cena_za_poseshenie" Type="Double" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Abonements" Relationship="Self.FK_Abonement_Usluga" FromRole="Usluga" ToRole="Abonement" />
+          <NavigationProperty Name="Raspisanie_zanjatij" Relationship="Self.FK_Raspisanie_zanjatij_Usluga" FromRole="Usluga" ToRole="Raspisanie_zanjatij" />
+          <NavigationProperty Name="Skidkas" Relationship="Self.FK_Skidka_Usluga" FromRole="Usluga" ToRole="Skidka" />
+          <NavigationProperty Name="Zarplata_instruktoram" Relationship="Self.FK_Zarplata_instructoram_Usluga" FromRole="Usluga" ToRole="Zarplata_instruktoram" />
+        </EntityType>
+        <EntityType Name="Zarplata_administratoram">
+          <Key>
+            <PropertyRef Name="ID_nachislenija" />
+          </Key>
+          <Property Name="ID_nachislenija" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_abonement" Type="Int32" />
+          <Property Name="Summa" Type="Double" />
+          <NavigationProperty Name="Abonement" Relationship="Self.FK_Zarplata_administratoram_Abonement" FromRole="Zarplata_administratoram" ToRole="Abonement" />
+        </EntityType>
+        <EntityType Name="Zarplata_instruktoram">
+          <Key>
+            <PropertyRef Name="ID_nachislenia" />
+          </Key>
+          <Property Name="ID_nachislenia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_usluga" Type="Int32" Nullable="false" />
+          <Property Name="ID_poseshenia" Type="Int32" Nullable="false" />
+          <Property Name="Summa" Type="Double" />
+          <NavigationProperty Name="Poseshenie" Relationship="Self.FK_Zarplata_instructoram_Poseshenie" FromRole="Zarplata_instruktoram" ToRole="Poseshenie" />
+          <NavigationProperty Name="Usluga" Relationship="Self.FK_Zarplata_instructoram_Usluga" FromRole="Zarplata_instruktoram" ToRole="Usluga" />
+        </EntityType>
+        <Association Name="FK_Abonement_Klient">
+          <End Role="Klient" Type="Self.Klient" Multiplicity="1" />
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klient">
+              <PropertyRef Name="ID_klient" />
+            </Principal>
+            <Dependent Role="Abonement">
+              <PropertyRef Name="ID_klient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Abonement_Skidka">
+          <End Role="Skidka" Type="Self.Skidka" Multiplicity="0..1" />
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skidka">
+              <PropertyRef Name="ID_skidka" />
+            </Principal>
+            <Dependent Role="Abonement">
+              <PropertyRef Name="ID_skidka" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Abonement_Sortudnik">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="ID_sotrudnik" />
+            </Principal>
+            <Dependent Role="Abonement">
+              <PropertyRef Name="ID_sotrudnik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Abonement_Usluga">
+          <End Role="Usluga" Type="Self.Usluga" Multiplicity="1" />
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usluga">
+              <PropertyRef Name="ID_usluga" />
+            </Principal>
+            <Dependent Role="Abonement">
+              <PropertyRef Name="ID_usluga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Poseshenie_Abonement">
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="1" />
+          <End Role="Poseshenie" Type="Self.Poseshenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abonement">
+              <PropertyRef Name="ID_abonement" />
+            </Principal>
+            <Dependent Role="Poseshenie">
+              <PropertyRef Name="ID_abonement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zarplata_administratoram_Abonement">
+          <End Role="Abonement" Type="Self.Abonement" Multiplicity="0..1" />
+          <End Role="Zarplata_administratoram" Type="Self.Zarplata_administratoram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abonement">
+              <PropertyRef Name="ID_abonement" />
+            </Principal>
+            <Dependent Role="Zarplata_administratoram">
+              <PropertyRef Name="ID_abonement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adress_Ulica">
+          <End Role="Ulica" Type="Self.Ulica" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Adress" Type="Self.Adress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ulica">
+              <PropertyRef Name="ID_ulica" />
+            </Principal>
+            <Dependent Role="Adress">
+              <PropertyRef Name="ID_ulica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Klient_Adress">
+          <End Role="Adress" Type="Self.Adress" Multiplicity="0..1" />
+          <End Role="Klient" Type="Self.Klient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adress">
+              <PropertyRef Name="ID_adress" />
+            </Principal>
+            <Dependent Role="Klient">
+              <PropertyRef Name="ID_adress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrudnik_Adress">
+          <End Role="Adress" Type="Self.Adress" Multiplicity="0..1" />
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adress">
+              <PropertyRef Name="ID_adress" />
+            </Principal>
+            <Dependent Role="Sotrudnik">
+              <PropertyRef Name="ID_adress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrudnik_Dolgnost">
+          <End Role="Dolgnost" Type="Self.Dolgnost" Multiplicity="0..1" />
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dolgnost">
+              <PropertyRef Name="ID_dolgnost" />
+            </Principal>
+            <Dependent Role="Sotrudnik">
+              <PropertyRef Name="ID_dolgnost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Raspisanie_zanjatij_Pomeshenie">
+          <End Role="Pomeshenie" Type="Self.Pomeshenie" Multiplicity="0..1" />
+          <End Role="Raspisanie_zanjatij" Type="Self.Raspisanie_zanjatij" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pomeshenie">
+              <PropertyRef Name="ID_pomeshenia" />
+            </Principal>
+            <Dependent Role="Raspisanie_zanjatij">
+              <PropertyRef Name="ID_pomeshenia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Poseshenie_Raspisanie_zanjatij">
+          <End Role="Raspisanie_zanjatij" Type="Self.Raspisanie_zanjatij" Multiplicity="1" />
+          <End Role="Poseshenie" Type="Self.Poseshenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Raspisanie_zanjatij">
+              <PropertyRef Name="ID_zanjatia" />
+            </Principal>
+            <Dependent Role="Poseshenie">
+              <PropertyRef Name="ID_zanjatia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zarplata_instructoram_Poseshenie">
+          <End Role="Poseshenie" Type="Self.Poseshenie" Multiplicity="1" />
+          <End Role="Zarplata_instruktoram" Type="Self.Zarplata_instruktoram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poseshenie">
+              <PropertyRef Name="ID_poseshenia" />
+            </Principal>
+            <Dependent Role="Zarplata_instruktoram">
+              <PropertyRef Name="ID_poseshenia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Raspisanie_zanjatij_Sotrudnik">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
+          <End Role="Raspisanie_zanjatij" Type="Self.Raspisanie_zanjatij" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="ID_sotrudnik" />
+            </Principal>
+            <Dependent Role="Raspisanie_zanjatij">
+              <PropertyRef Name="ID_sotrudnik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Raspisanie_zanjatij_Usluga">
+          <End Role="Usluga" Type="Self.Usluga" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Raspisanie_zanjatij" Type="Self.Raspisanie_zanjatij" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usluga">
+              <PropertyRef Name="ID_usluga" />
+            </Principal>
+            <Dependent Role="Raspisanie_zanjatij">
+              <PropertyRef Name="ID_usluga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Skidka_Usluga">
+          <End Role="Usluga" Type="Self.Usluga" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Skidka" Type="Self.Skidka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usluga">
+              <PropertyRef Name="ID_usluga" />
+            </Principal>
+            <Dependent Role="Skidka">
+              <PropertyRef Name="ID_usluga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zarplata_instructoram_Usluga">
+          <End Role="Usluga" Type="Self.Usluga" Multiplicity="1" />
+          <End Role="Zarplata_instruktoram" Type="Self.Zarplata_instruktoram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usluga">
+              <PropertyRef Name="ID_usluga" />
+            </Principal>
+            <Dependent Role="Zarplata_instruktoram">
+              <PropertyRef Name="ID_usluga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Abonements" EntityType="Self.Abonement" />
+          <EntitySet Name="Adresses" EntityType="Self.Adress" />
+          <EntitySet Name="Dolgnosts" EntityType="Self.Dolgnost" />
+          <EntitySet Name="Klients" EntityType="Self.Klient" />
+          <EntitySet Name="Pomeshenies" EntityType="Self.Pomeshenie" />
+          <EntitySet Name="Poseshenies" EntityType="Self.Poseshenie" />
+          <EntitySet Name="Raspisanie_zanjatij" EntityType="Self.Raspisanie_zanjatij" />
+          <EntitySet Name="Skidkas" EntityType="Self.Skidka" />
+          <EntitySet Name="Sotrudniks" EntityType="Self.Sotrudnik" />
+          <EntitySet Name="Ulicas" EntityType="Self.Ulica" />
+          <EntitySet Name="Uslugas" EntityType="Self.Usluga" />
+          <EntitySet Name="Zarplata_administratoram" EntityType="Self.Zarplata_administratoram" />
+          <EntitySet Name="Zarplata_instruktoram" EntityType="Self.Zarplata_instruktoram" />
+          <AssociationSet Name="FK_Abonement_Klient" Association="Self.FK_Abonement_Klient">
+            <End Role="Klient" EntitySet="Klients" />
+            <End Role="Abonement" EntitySet="Abonements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Abonement_Skidka" Association="Self.FK_Abonement_Skidka">
+            <End Role="Skidka" EntitySet="Skidkas" />
+            <End Role="Abonement" EntitySet="Abonements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Abonement_Sortudnik" Association="Self.FK_Abonement_Sortudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudniks" />
+            <End Role="Abonement" EntitySet="Abonements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Abonement_Usluga" Association="Self.FK_Abonement_Usluga">
+            <End Role="Usluga" EntitySet="Uslugas" />
+            <End Role="Abonement" EntitySet="Abonements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Poseshenie_Abonement" Association="Self.FK_Poseshenie_Abonement">
+            <End Role="Abonement" EntitySet="Abonements" />
+            <End Role="Poseshenie" EntitySet="Poseshenies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zarplata_administratoram_Abonement" Association="Self.FK_Zarplata_administratoram_Abonement">
+            <End Role="Abonement" EntitySet="Abonements" />
+            <End Role="Zarplata_administratoram" EntitySet="Zarplata_administratoram" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adress_Ulica" Association="Self.FK_Adress_Ulica">
+            <End Role="Ulica" EntitySet="Ulicas" />
+            <End Role="Adress" EntitySet="Adresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Klient_Adress" Association="Self.FK_Klient_Adress">
+            <End Role="Adress" EntitySet="Adresses" />
+            <End Role="Klient" EntitySet="Klients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrudnik_Adress" Association="Self.FK_Sotrudnik_Adress">
+            <End Role="Adress" EntitySet="Adresses" />
+            <End Role="Sotrudnik" EntitySet="Sotrudniks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrudnik_Dolgnost" Association="Self.FK_Sotrudnik_Dolgnost">
+            <End Role="Dolgnost" EntitySet="Dolgnosts" />
+            <End Role="Sotrudnik" EntitySet="Sotrudniks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Raspisanie_zanjatij_Pomeshenie" Association="Self.FK_Raspisanie_zanjatij_Pomeshenie">
+            <End Role="Pomeshenie" EntitySet="Pomeshenies" />
+            <End Role="Raspisanie_zanjatij" EntitySet="Raspisanie_zanjatij" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Poseshenie_Raspisanie_zanjatij" Association="Self.FK_Poseshenie_Raspisanie_zanjatij">
+            <End Role="Raspisanie_zanjatij" EntitySet="Raspisanie_zanjatij" />
+            <End Role="Poseshenie" EntitySet="Poseshenies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zarplata_instructoram_Poseshenie" Association="Self.FK_Zarplata_instructoram_Poseshenie">
+            <End Role="Poseshenie" EntitySet="Poseshenies" />
+            <End Role="Zarplata_instruktoram" EntitySet="Zarplata_instruktoram" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Raspisanie_zanjatij_Sotrudnik" Association="Self.FK_Raspisanie_zanjatij_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudniks" />
+            <End Role="Raspisanie_zanjatij" EntitySet="Raspisanie_zanjatij" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Raspisanie_zanjatij_Usluga" Association="Self.FK_Raspisanie_zanjatij_Usluga">
+            <End Role="Usluga" EntitySet="Uslugas" />
+            <End Role="Raspisanie_zanjatij" EntitySet="Raspisanie_zanjatij" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skidka_Usluga" Association="Self.FK_Skidka_Usluga">
+            <End Role="Usluga" EntitySet="Uslugas" />
+            <End Role="Skidka" EntitySet="Skidkas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zarplata_instructoram_Usluga" Association="Self.FK_Zarplata_instructoram_Usluga">
+            <End Role="Usluga" EntitySet="Uslugas" />
+            <End Role="Zarplata_instruktoram" EntitySet="Zarplata_instruktoram" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище FitnessModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Abonements">
+            <EntityTypeMapping TypeName="FitnessModel.Abonement">
+              <MappingFragment StoreEntitySet="Abonement">
+                <ScalarProperty Name="Stoimost" ColumnName="Stoimost" />
+                <ScalarProperty Name="Ostatok" ColumnName="Ostatok" />
+                <ScalarProperty Name="ID_abonement" ColumnName="ID_abonement" />
+                <ScalarProperty Name="ID_usluga" ColumnName="ID_usluga" />
+                <ScalarProperty Name="ID_skidka" ColumnName="ID_skidka" />
+                <ScalarProperty Name="ID_klient" ColumnName="ID_klient" />
+                <ScalarProperty Name="ID_sotrudnik" ColumnName="ID_sotrudnik" />
+                <ScalarProperty Name="Data_nachala" ColumnName="Data_nachala" />
+                <ScalarProperty Name="Data_okonchania" ColumnName="Data_okonchania" />
+                <ScalarProperty Name="Kolichestvo" ColumnName="Kolichestvo" />
+                <ScalarProperty Name="Sostojanie" ColumnName="Sostojanie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adresses">
+            <EntityTypeMapping TypeName="FitnessModel.Adress">
+              <MappingFragment StoreEntitySet="Adress">
+                <ScalarProperty Name="ID_adress" ColumnName="ID_adress" />
+                <ScalarProperty Name="Nomer_doma" ColumnName="Nomer_doma" />
+                <ScalarProperty Name="Nomer_kvartiru" ColumnName="Nomer_kvartiru" />
+                <ScalarProperty Name="ID_ulica" ColumnName="ID_ulica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dolgnosts">
+            <EntityTypeMapping TypeName="FitnessModel.Dolgnost">
+              <MappingFragment StoreEntitySet="Dolgnost">
+                <ScalarProperty Name="ID_dolgnost" ColumnName="ID_dolgnost" />
+                <ScalarProperty Name="Nazvanie_dolgnosti" ColumnName="Nazvanie_dolgnosti" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Klients">
+            <EntityTypeMapping TypeName="FitnessModel.Klient">
+              <MappingFragment StoreEntitySet="Klient">
+                <ScalarProperty Name="ID_klient" ColumnName="ID_klient" />
+                <ScalarProperty Name="FIO_klient" ColumnName="FIO_klient" />
+                <ScalarProperty Name="Telephon" ColumnName="Telephon" />
+                <ScalarProperty Name="ID_adress" ColumnName="ID_adress" />
+                <ScalarProperty Name="ID_Login" ColumnName="ID_Login" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pomeshenies">
+            <EntityTypeMapping TypeName="FitnessModel.Pomeshenie">
+              <MappingFragment StoreEntitySet="Pomeshenie">
+                <ScalarProperty Name="ID_pomeshenia" ColumnName="ID_pomeshenia" />
+                <ScalarProperty Name="Nazvanie_pomeshenia" ColumnName="Nazvanie_pomeshenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Poseshenies">
+            <EntityTypeMapping TypeName="FitnessModel.Poseshenie">
+              <MappingFragment StoreEntitySet="Poseshenie">
+                <ScalarProperty Name="ID_poseshenia" ColumnName="ID_poseshenia" />
+                <ScalarProperty Name="ID_abonement" ColumnName="ID_abonement" />
+                <ScalarProperty Name="ID_zanjatia" ColumnName="ID_zanjatia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Raspisanie_zanjatij">
+            <EntityTypeMapping TypeName="FitnessModel.Raspisanie_zanjatij">
+              <MappingFragment StoreEntitySet="Raspisanie_zanjatij">
+                <ScalarProperty Name="ID_zanjatia" ColumnName="ID_zanjatia" />
+                <ScalarProperty Name="ID_usluga" ColumnName="ID_usluga" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="ID_sotrudnik" ColumnName="ID_sotrudnik" />
+                <ScalarProperty Name="ID_pomeshenia" ColumnName="ID_pomeshenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skidkas">
+            <EntityTypeMapping TypeName="FitnessModel.Skidka">
+              <MappingFragment StoreEntitySet="Skidka">
+                <ScalarProperty Name="ID_skidka" ColumnName="ID_skidka" />
+                <ScalarProperty Name="ID_usluga" ColumnName="ID_usluga" />
+                <ScalarProperty Name="Procent_value" ColumnName="Procent_value" />
+                <ScalarProperty Name="Kolichestvo" ColumnName="Kolichestvo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sotrudniks">
+            <EntityTypeMapping TypeName="FitnessModel.Sotrudnik">
+              <MappingFragment StoreEntitySet="Sotrudnik">
+                <ScalarProperty Name="ID_sotrudnik" ColumnName="ID_sotrudnik" />
+                <ScalarProperty Name="FIO_sotrudnik" ColumnName="FIO_sotrudnik" />
+                <ScalarProperty Name="Telephon" ColumnName="Telephon" />
+                <ScalarProperty Name="Pasport" ColumnName="Pasport" />
+                <ScalarProperty Name="ID_adress" ColumnName="ID_adress" />
+                <ScalarProperty Name="ID_dolgnost" ColumnName="ID_dolgnost" />
+                <ScalarProperty Name="ID_Login" ColumnName="ID_Login" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ulicas">
+            <EntityTypeMapping TypeName="FitnessModel.Ulica">
+              <MappingFragment StoreEntitySet="Ulica">
+                <ScalarProperty Name="ID_ulica" ColumnName="ID_ulica" />
+                <ScalarProperty Name="Nazvanie_ulicu" ColumnName="Nazvanie_ulicu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uslugas">
+            <EntityTypeMapping TypeName="FitnessModel.Usluga">
+              <MappingFragment StoreEntitySet="Usluga">
+                <ScalarProperty Name="ID_usluga" ColumnName="ID_usluga" />
+                <ScalarProperty Name="Nazvanie" ColumnName="Nazvanie" />
+                <ScalarProperty Name="Cena_za_poseshenie" ColumnName="Cena_za_poseshenie" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zarplata_administratoram">
+            <EntityTypeMapping TypeName="FitnessModel.Zarplata_administratoram">
+              <MappingFragment StoreEntitySet="Zarplata_administratoram">
+                <ScalarProperty Name="ID_nachislenija" ColumnName="ID_nachislenija" />
+                <ScalarProperty Name="ID_abonement" ColumnName="ID_abonement" />
+                <ScalarProperty Name="Summa" ColumnName="Summa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zarplata_instruktoram">
+            <EntityTypeMapping TypeName="FitnessModel.Zarplata_instruktoram">
+              <MappingFragment StoreEntitySet="Zarplata_instruktoram">
+                <ScalarProperty Name="ID_nachislenia" ColumnName="ID_nachislenia" />
+                <ScalarProperty Name="ID_usluga" ColumnName="ID_usluga" />
+                <ScalarProperty Name="ID_poseshenia" ColumnName="ID_poseshenia" />
+                <ScalarProperty Name="Summa" ColumnName="Summa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

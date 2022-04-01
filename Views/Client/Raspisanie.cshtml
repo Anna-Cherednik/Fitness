@@ -1,0 +1,62 @@
+﻿@model Fitness.Models.CalendarViewModel
+
+@{
+    ViewBag.Title = "Расписание";
+}
+
+<h2>Расписание</h2>
+
+@Html.Partial("_SelectPeriodPartial")
+
+<table class="table">
+    <tr>
+        <th>Понедельник</th>
+        <th>Вторник</th>
+        <th>Среда</th>
+        <th>Четверг</th>
+        <th>Пятница</th>
+        <th>Суббота</th>
+        <th>Воскресенье</th>
+    </tr>
+
+    @{
+      for (int i = 0; i < Model.Raspisanie.Count; i++)
+      {
+         <tr>
+            @for (int j = 0; j < 7; j++)
+            {
+                if (j + 7 * i < Model.Raspisanie.Count)
+                {
+                    <td>
+                        @Html.DisplayFor(model => Model.Raspisanie[j + 7 * i].Data)
+                    </td>
+                }
+                else
+                {
+                    break;
+                }
+            }
+        </tr>
+        <tr>
+            @for (int j = 0; j < 7; j++)
+            {
+                if (j + 7 * i < Model.Raspisanie.Count)
+                {
+                    <td>
+                        @foreach (var item in Model.Raspisanie[j + 7 * i].Zanjaties)
+                        {
+                            <p>@Html.DisplayFor(model => item)</p>
+                        }
+                    </td>
+                }
+                else
+                {
+                    break;
+                }
+            }
+        </tr>
+            //i += 7;
+        }
+    }
+
+</table>

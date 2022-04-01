@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Fitness.Models.RaspisanieViewModel>
+
+@{
+    ViewBag.Title = "Расписание занятий";
+}
+
+<h2>Расписание занятий</h2>
+
+<p>
+    @Html.ActionLink("Добавить занятие", "CreateZanjatie")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usluga)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sotrudnik)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pomeshenie)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usluga)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sotrudnik)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pomeshenie)
+        </td>
+        <td>
+            @if (DateTime.Today == item.Data && item.IsVisit != true)
+            {
+                @Html.ActionLink("Отметить посещение", "CheckPoseshenie", new { id = item.ID_zanjatia })
+            }                
+        </td>
+    </tr>
+}
+
+</table>

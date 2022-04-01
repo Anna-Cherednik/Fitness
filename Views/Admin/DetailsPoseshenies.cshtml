@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Fitness.Models.PosesheniesViewModel>
+
+@{
+    ViewBag.Title = "Просмотр посещений";
+}
+
+<h2>Просмотр посещений</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usluga)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.klients)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kolichestvo)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usluga)
+        </td>
+        <td>
+            @foreach (var klient in item.klients)
+            {
+                <p>@Html.DisplayFor(modelItem => klient)</p>
+            }
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Kolichestvo)
+        </td>
+    </tr>
+}
+
+</table>

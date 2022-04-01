@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Fitness.Models.SotrudnikViewModel>
+
+@{
+    ViewBag.Title = "Просмотр сотрудников";
+}
+
+<h2>Просмотр сотрудников</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FIO_sotrudnik)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telephon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pasport)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dolgnost)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FIO_sotrudnik)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telephon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pasport)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dolgnost)
+        </td>
+    </tr>
+}
+
+</table>

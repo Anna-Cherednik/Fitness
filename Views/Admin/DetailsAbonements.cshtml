@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Fitness.Models.AdminViewAbonementModel>
+
+@{
+    ViewBag.Title = "Просмотр абонементов";
+}
+
+<h2>Просмотр абонементов</h2>
+
+<p>
+    @Html.ActionLink("Создать новый абонемент", "CreateKlient")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Klient_FIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nazvanie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kolichestvo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_nachala)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_okonchania)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Procent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stoimost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sostojanie)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Klient_FIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nazvanie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kolichestvo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_nachala)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_okonchania)
+        </td>
+        <td>
+            @if (item.Procent > 0)
+            {
+                @Html.DisplayFor(modelItem => item.Procent)
+            }           
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stoimost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sostojanie)
+        </td>
+        <td>
+            @switch (item.Sostojanie)
+            {
+                case "заказаный":
+                    @Html.ActionLink("Оформить", "EditAbonement", new { id = item.ID_abonement })
+                    break;
+                     
+                default:
+                    break;
+            }
+        </td>
+    </tr>
+}
+
+</table>

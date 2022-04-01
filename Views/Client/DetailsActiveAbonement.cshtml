@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Fitness.Models.ClientViewAbonementModel>
+
+@{
+    ViewBag.Title = "Активные абонементы";
+}
+
+<h2>Просмотр абонементов</h2>
+
+<p> 
+    <input type="button" value="Все" onclick="location.href='@Url.Action("Index", "Client")'" class="btn btn-default" /> 
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nazvanie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_nachala)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_okonchania)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Procent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cena)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ostatok)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_vizita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sostojanie)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nazvanie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_nachala)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_okonchania)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Procent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cena)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ostatok)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_vizita)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sostojanie)
+        </td>
+    </tr>
+}
+
+</table>

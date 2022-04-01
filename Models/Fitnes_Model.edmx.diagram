@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cc58300022284693ac7aeed06bfc65eb" Name="Diagram1">
+        <EntityTypeShape EntityType="FitnessModel.Abonement" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessModel.Adress" Width="1.5" PointX="1.5" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessModel.Dolgnost" Width="1.5" PointX="1.5" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessModel.Klient" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessModel.Pomeshenie" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessModel.Poseshenie" Width="1.5" PointX="7.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessModel.Raspisanie_zanjatij" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessModel.Skidka" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessModel.Sotrudnik" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessModel.Ulica" Width="1.5" PointX="1.5" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessModel.Usluga" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessModel.Zarplata_administratoram" Width="1.5" PointX="7.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="FitnessModel.Zarplata_instruktoram" Width="1.5" PointX="9.75" PointY="6.875" IsExpanded="true" />
+        <AssociationConnector Association="FitnessModel.FK_Abonement_Klient" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessModel.FK_Abonement_Skidka" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessModel.FK_Abonement_Sortudnik" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessModel.FK_Abonement_Usluga" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessModel.FK_Poseshenie_Abonement" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessModel.FK_Zarplata_administratoram_Abonement" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessModel.FK_Adress_Ulica" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessModel.FK_Klient_Adress" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessModel.FK_Sotrudnik_Adress" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessModel.FK_Sotrudnik_Dolgnost" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessModel.FK_Raspisanie_zanjatij_Pomeshenie" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessModel.FK_Poseshenie_Raspisanie_zanjatij" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessModel.FK_Zarplata_instructoram_Poseshenie" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessModel.FK_Raspisanie_zanjatij_Sotrudnik" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessModel.FK_Raspisanie_zanjatij_Usluga" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessModel.FK_Skidka_Usluga" ManuallyRouted="false" />
+        <AssociationConnector Association="FitnessModel.FK_Zarplata_instructoram_Usluga" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,27 @@
+﻿@using Fitness.Models
+@model FitnessViewModel
+@{
+    ViewBag.Title = "Главная";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="row">
+
+    @foreach (var usluga in Model.Uslugas)
+    {
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <img class="img-thumbnail" width="300" height="200" src="@usluga.ImagePath" />
+                <div class="caption">
+                    @Html.DisplayFor(m => usluga.Nazvanie, new { @class = "form-control" })
+                    <div class="label-info bottom-right">
+                        @Html.LabelFor(m => usluga.Cena_za_poseshenie, new { @class = "col-md-6 control-label" })
+                        @Html.DisplayFor(m => usluga.Cena_za_poseshenie, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
